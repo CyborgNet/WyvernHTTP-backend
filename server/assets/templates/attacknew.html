@@ -1,0 +1,285 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Create Attack - Wyvern</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/metisMenu.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="assets/css/typography.css">
+    <link rel="stylesheet" href="assets/css/default-css.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- modernizr css -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="dashboard"><img src="assets/images/icon/logo.png" alt="logo"></a>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li><a href="dashboard"><i class="ti-dashboard"></i><span>Dashboard</span></a></li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-notepad"></i><span>Execution Task</span></a>
+                                <ul class="collapse">
+                                    <li><a href="task.new">Create Task</a></li>
+                                    <li><a href="task.log">Task Log</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-rocket"></i><span>Ddos</span></a>
+                                <ul class="collapse">
+                                    <li><a href="attack.new">Create Attack</a></li>
+                                    <li><a href="attack.log">Attack Log</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-desktop"></i><span>Bot</span></a>
+                                <ul class="collapse">
+                                    <li><a href="bot.list">List</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i><span>User</span></a>
+                                <ul class="collapse">
+                                    <li><a href="setting">Setting</a></li>
+                                    <li><a href="logout">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            <!-- header area start -->
+            <div class="header-area">
+                <div class="row align-items-center">
+                    <!-- nav and search button -->
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <!-- profile info & task notification -->
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <ul class="notification-area pull-right">
+                            <li id="full-view"><i class="ti-fullscreen"></i></li>
+                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- header area end -->
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left">Create Attack</h4>
+                            <ul class="breadcrumbs pull-left">
+                                <li><a href="dashboard">Home</a></li>
+                                <li><span>Create Attack</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ .username }} <i class="fa fa-angle-down"></i></h4>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="setting">Settings</a>
+                                <a class="dropdown-item" href="logout">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+            	<form method="POST">
+            		<div class="row">
+	                    <div class="col-lg-6 col-ml-12">
+	                        <div class="row">
+	                            <!-- Textual inputs start -->
+	                            <div class="col-12 mt-5">
+	                                <div class="card">
+	                                    <div class="card-body">
+	                                        <h4 class="header-title">New Attack</h4>
+	                                        <b class="text-muted mb-3 d-block">Type:</b>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" checked id="simple" name="attackType" class="custom-control-input" value="Simple">
+	                                            <label class="custom-control-label" for="simple">Simple</label>
+	                                        </div>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" id="bypass" name="attackType" class="custom-control-input" value="Bypass">
+	                                            <label class="custom-control-label" for="bypass">Bypass</label>
+	                                        </div>
+	                                        <div class="mb-3"></div>
+	                                        <div class="form-group">
+	                                            <label for="targetUrl" class="col-form-label">Target Url</label>
+	                                            <input class="form-control" name="target" placeholder="https://hitmehard.com" type="text" id="targetUrl" required>
+	                                        </div>
+	                                        <div class="form-group">
+	                                            <label for="thread" class="col-form-label">Thread</label>
+	                                            <input class="form-control" name="thread" placeholder="300" type="number" id="thread" required>
+                                        	</div>
+	                                        <div class="form-group">
+	                                            <label for="connection" class="col-form-label">Connection</label>
+	                                            <input class="form-control" name="connection" placeholder="100" type="number" id="connection" required>
+                                        	</div>
+                                        	<div class="form-group">
+	                                            <label for="duration" class="col-form-label">Attack Duration (Second)</label>
+	                                            <input class="form-control" name="duration" placeholder="3600" type="number" id="duration" required>
+                                        	</div>
+                                        	<div class="form-group">
+	                                            <label for="interval" class="col-form-label">Attack Interval (Millisecond)</label>
+	                                            <input class="form-control" name="interval" placeholder="10" type="number" id="interval" required>
+                                        	</div>
+	                                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="col-lg-6 col-ml-12">
+	                        <div class="row">
+	                            <div class="col-12 mt-5">
+	                                <div class="card">
+	                                    <div class="card-body">
+	                                        <h4 class="header-title">Setting</h4>
+	                                        <b class="text-muted mb-3 d-block">Method:</b>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" checked id="get" name="method" class="custom-control-input" value="GET">
+	                                            <label class="custom-control-label" for="get">GET</label>
+	                                        </div>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" id="post" name="method" class="custom-control-input" value="POST">
+	                                            <label class="custom-control-label" for="post">POST</label>
+	                                        </div>
+	                                        <div class="mb-3"></div>
+	                                        <b class="text-muted mb-3 d-block">Random Header:</b>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" checked id="dontuseRnd" name="randomHeader" class="custom-control-input" value="false">
+	                                            <label class="custom-control-label" for="dontuseRnd">Don't use Random Header</label>
+	                                        </div>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" id="useRnd" name="randomHeader" class="custom-control-input" value="true">
+	                                            <label class="custom-control-label" for="useRnd">Use Random Header</label>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                            <div class="col-12 mt-5">
+	                                <div class="card">
+	                                    <div class="card-body">
+	                                        <h4 class="header-title">Bypass Setting</h4>
+	                                        <b class="text-muted mb-3 d-block">Fuzzer:</b>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" checked id="dontuseFuz" name="useFuzzer" class="custom-control-input" value="false">
+	                                            <label class="custom-control-label" for="dontuseFuz">Don't use Fuzzer</label>
+	                                        </div>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" id="useFuz" name="useFuzzer" class="custom-control-input" value="true">
+	                                            <label class="custom-control-label" for="useFuz">Use Fuzzer</label>
+	                                        </div>
+	                                        <div class="mb-3"></div>
+	                                        <b class="text-muted mb-3 d-block">Protection:</b>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" checked id="Default" name="protection" class="custom-control-input" value="0">
+	                                            <label class="custom-control-label" for="Default">Default</label>
+	                                        </div>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" id="Cloudflare" name="protection" class="custom-control-input" value="1">
+	                                            <label class="custom-control-label" for="Cloudflare">Cloudflare</label>
+	                                        </div>
+	                                        <div class="custom-control custom-radio custom-control-inline">
+	                                            <input type="radio" id="Incapsula" name="protection" class="custom-control-input" value="2">
+	                                            <label class="custom-control-label" for="Incapsula">Incapsula</label>
+	                                        </div>
+                                            <div class="mb-3"></div>
+                                            <div class="form-group">
+                                                <label for="cookieDuration" class="col-form-label">Cookie Duration (Minute)</label>
+                                                <input class="form-control" name="cookieDuration" placeholder="5" type="number" id="cookieDuration">
+                                            </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                            <div class="col-12 mt-5">
+	                                <div class="card">
+	                                    <div class="card-body">
+	                                        <h4 class="header-title">Bot to Execute</h4>
+	                                        <div class="form-group">
+	                                            <label for="botCount" class="col-form-label">Bot Count</label>
+	                                            <input class="form-control" name="botCount" placeholder="Leave blank for every bot" type="number" id="botCount">
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+            	</form>
+            </div>
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2020. All right reserved. Botnet by Godbuntu.</p>
+            </div>
+        </footer>
+        <!-- footer area end-->
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <!-- bootstrap 4 js -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- others plugins -->
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>
