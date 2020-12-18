@@ -1,4 +1,4 @@
-# WyvernHTTP-backend
+# WyvernHTTP
 WyvernHTTP Botnet
 
 ## WyvernHTTP
